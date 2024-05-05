@@ -1,28 +1,25 @@
+import "./App.css";
+import ListInvoiceComponent from "./components/ListInvoiceComponent";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import InvoiceComponent from "./components/InvoiceComponent";
 
-import './App.css'
-import HelloWorld from './HelloWorld'
-import ListInvoiceComponent from './components/ListInvoiceComponent'
-import Header from './components/Header'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import InvoiceComponent from './components/InvoiceComponent'
-import SideBar from './components/SideBar'
+// Saad 3mk Codes
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
-        <Header />
         <Routes>
-          <Route path='/' element={<SideBar />}></Route>
-          <Route path='/invoices' element={<ListInvoiceComponent />}></Route>
-          <Route path="/invoice-details/:qrCode" element={<InvoiceComponent />} />
+          <Route path="/invoices" element={<ListInvoiceComponent />}></Route>
+          <Route path="/invoice-details" element={<InvoiceComponent />}></Route>
 
+          {/* saad 3mk Codes */}
+          <Route path="/Dashboard" element={<Dashboard />}></Route>
         </Routes>
-
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
