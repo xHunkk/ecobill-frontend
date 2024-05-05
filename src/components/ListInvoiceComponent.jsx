@@ -39,7 +39,16 @@ const ListInvoiceComponent = () => {
         <tbody>
           {invoices.map(invoice => (
             <tr key={invoice.qrCode} className='border-t border-gray-300'>
-              <td className='px-4 py-2'>{invoice.qrCode}</td>
+              <td className='px-4 py-2'>
+                <div>
+                  <img src={invoice.epr.logo} alt="EPR Logo" className="ml-2" />
+                </div>
+                <div>
+                  <h2>{invoice.epr.name}</h2>
+                  {invoice.epr.fullName}
+
+                </div>
+              </td>
               <td className='px-4 py-2'>{invoice.totalAmount}</td>
               <td className='px-4 py-2'>{invoice.creationDate}</td>
               <td className='px-4 py-2'>{invoice.epr.category}</td>
