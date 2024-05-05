@@ -6,6 +6,7 @@ import Header from './components/Header'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import InvoiceComponent from './components/InvoiceComponent'
 import SideBar from './components/SideBar'
+import StatisticsComponent from './components/StatisticsComponent'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<SideBar />}></Route>
+          <Route path='/' element={<StatisticsComponent />}></Route>
           <Route path='/invoices' element={<ListInvoiceComponent />}></Route>
           <Route path="/invoice-details/:qrCode" element={<InvoiceComponent />} />
 

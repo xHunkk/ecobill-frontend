@@ -63,32 +63,6 @@ const ListInvoiceComponent = () => {
       </table>
     </div>
   )
-  //   <div className='container'>
-  //     <h2 className='text-center'>List of Invoices</h2>
-  //     <table className='table table-striped table-bordered'>
-  //       <thead>
-  //         <tr>
-  //           <th>Invoice QR Code</th>
-  //           <th>Invoice Creation Date</th>
-  //           <th>Invoice Total Amount</th>
-  //           <th>Invoice Items</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {
-  //           invoices.map(invoice => <tr key={invoice.qrCode}>
-  //             <td>{invoice.qrCode}</td>
-  //             <td>{invoice.creationDate}</td>
-  //             <td>{invoice.totalAmount}</td>
-  //             <td>            <button className='btn btn-primary mb-2' onClick={seeInvoiceDetails}>Details</button></td>
-
-  //           </tr>)
-  //         }
-
-  //       </tbody>
-  //     </table>
-  //   </div>
-  // )
 }
 
 export default ListInvoiceComponent
