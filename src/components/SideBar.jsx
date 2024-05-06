@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import AnalyticsPopup from "./AnalyticsPopup";
 
-// Sidebar component
-export default function Sidebar() {
+export default function Sidebar({ onApplyAnalytics }) {
   const [showAnalytics, setShowAnalytics] = useState(false);
+  const [analyticsData, setAnalyticsData] = useState(null);
+
+  const handleApplyAnalytics = (data) => {
+    setAnalyticsData(data);
+    onApplyAnalytics(data);
+    setShowAnalytics(false);
+  };
 
   return (
     <div style={styles.sidebar}>
       <div style={styles.logoFrame}>
-        {/* Logo */}
         <img src="images/logo.svg" alt="Logo" style={styles.logo} />
       </div>
       <div style={styles.separator} />
       <div style={styles.links}>
-        {/* Icons */}
         <img src="images/home.svg" alt="Home" style={styles.icon} />
         <img
           src="images/analytics.svg"
@@ -24,11 +28,9 @@ export default function Sidebar() {
         />
       </div>
       <div style={styles.supportIcon}>
-        {/* Support */}
         <img src="images/support.svg" alt="Support" style={styles.icon} />
       </div>
 
-      {/* analytics popup */}
       <Modal
         isOpen={showAnalytics}
         onRequestClose={() => setShowAnalytics(false)}
@@ -50,13 +52,12 @@ export default function Sidebar() {
           },
         }}
       >
-        <AnalyticsPopup />
+        <AnalyticsPopup onApply={handleApplyAnalytics} />
       </Modal>
     </div>
   );
 }
 
-// Styles
 const styles = {
   sidebar: {
     height: "100%",

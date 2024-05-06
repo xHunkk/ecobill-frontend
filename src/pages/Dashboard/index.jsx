@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar1 from "../../components/Sidebar";
 import Header from "../../components/Header";
 import StatisticsComponent from "../../components/StatisticsComponent";
@@ -6,6 +6,14 @@ import "../../App.css";
 import ListInvoiceComponent from "../../components/ListInvoiceComponent";
 
 const DashboardPage = () => {
+  const [fetchedInvoices, setFetchedInvoices] = useState([]);
+
+  const handleApplyAnalytics = (data) => {
+    setFetchedInvoices(data);
+  };
+
+  console.log("Dashboard", fetchedInvoices);
+
   return (
     <div
       style={{
@@ -15,7 +23,7 @@ const DashboardPage = () => {
       }}
     >
       <div className="sidebar" style={{ padding: "10px" }}>
-        <Sidebar1 />
+        <Sidebar1 onApplyAnalytics={handleApplyAnalytics} />{" "}
       </div>
       <div
         className="rightSide"
@@ -23,7 +31,7 @@ const DashboardPage = () => {
       >
         <Header />
         <StatisticsComponent />
-        <ListInvoiceComponent />
+        <ListInvoiceComponent invoices={fetchedInvoices} />
       </div>
     </div>
   );

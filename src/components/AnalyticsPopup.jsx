@@ -1,19 +1,63 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
-// Popup component
-function AnalyticsPopup() {
+function AnalyticsPopup({ onApply }) {
   const [organization, setOrganization] = useState("");
   const [afterDate, setAfterDate] = useState("");
   const [beforeDate, setBeforeDate] = useState("");
   const [minAmount, setMinAmount] = useState("");
   const [maxAmount, setMaxAmount] = useState("");
+  const [fetchedInvoices, setFetchedInvoices] = useState([]);
+
+  const phoneNumber = 966553604747;
+
+  const handleApply = () => {
+    const baseUrl = 'http://localhost:8383/invoices';
+    let endpoint = '';
+
+    const params = {};
+    if (organization && !(phoneNumber && beforeDate && afterDate && minAmount && maxAmount)) {
+      endpoint = '/companies';
+      params.company = organization;
+    } else if (minAmount && maxAmount) {
+      endpoint = '/price_range'
+      params.min = minAmount;
+      params.max = maxAmount;
+    } else if (phoneNumber && beforeDate && afterDate) {
+      endpoint = '/date';
+      params.phone_number = phoneNumber;
+      params.before_date = beforeDate + " 00:00:00.000 ";
+      params.after_date = afterDate + " 00:00:00.000 ";
+    }
+    else {
+      endpoint = '/all_filters';
+      params.phone_number = phoneNumber;
+      params.before_date = beforeDate + " 00:00:00.000 ";
+      params.after_date = afterDate + " 00:00:00.000 ";
+      params.min = minAmount;
+      params.max = maxAmount;
+      params.company = organization;
+
+
+    }
+
+    axios.get(baseUrl + endpoint, { params })
+      .then(response => {
+        console.log(response.data);
+        setFetchedInvoices(response.data);
+        onApply(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
 
   return (
     <div style={styles.popup}>
       <div style={styles.header}>
         <h2 style={styles.title}>Analytics</h2>
         <p style={styles.subtitle}>
-          Please enter some values ​​about what to be shown.
+          Please enter some values about what to be shown.
         </p>
       </div>
       <div style={styles.inputs}>
@@ -60,14 +104,14 @@ function AnalyticsPopup() {
             />
           </div>
         </div>
-        <button style={styles.button}>Apply</button>
+        <button style={styles.button} onClick={handleApply}>Apply</button>
       </div>
     </div>
   );
 }
+
 export default AnalyticsPopup;
 
-// Styles
 const styles = {
   popup: {
     width: "auto",
