@@ -28,11 +28,11 @@ const StatisticsComponent = () => {
         <div style={styles.frame}>
           <p style={styles.text}>Total Spent This Month</p>
           <p style={styles.bigText} className="bigText">
-            {statistics.thisMonthSpendings}
+            {statistics.thisMonthSpendings} <span style={styles.SAR}>SAR</span>
           </p>
           <p style={styles.smallText}>
-            <span>{statistics.monthlySpendingsDifference}</span> Compared to the
-            last month
+            <span>{statistics.monthlySpendingsDifference}%</span> Compared to
+            the last month
           </p>
         </div>
       ) : (
@@ -42,7 +42,7 @@ const StatisticsComponent = () => {
         <div style={styles.frame}>
           <p style={styles.text}>Average Spent For Last 3 Months</p>
           <p style={styles.bigText} className="bigText">
-            {statistics.averageSpent}
+            {statistics.averageSpent} <span style={styles.SAR}>SAR</span>
           </p>
           <p style={styles.smallText}>Any text can be written here</p>
         </div>
@@ -54,7 +54,8 @@ const StatisticsComponent = () => {
           <div style={styles.smallFrame}>
             <p style={styles.text}>Last Month Spendings</p>
             <p style={styles.smallNum} className="smallNum">
-              {statistics.lastMonthSpendings}
+              {statistics.lastMonthSpendings}{" "}
+              <span style={styles.SARsmall}>SAR</span>
             </p>
 
             <p style={styles.smallText}>Any text can be written here</p>
@@ -158,5 +159,11 @@ const styles = {
     color: "#131515",
     fontFamily: "PoppinsSemiBold",
     fontSize: "30px",
+  },
+  SAR: {
+    fontSize: "32px",
+  },
+  SARsmall: {
+    fontSize: "20px",
   },
 };

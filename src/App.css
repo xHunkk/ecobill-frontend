@@ -6,6 +6,9 @@
 
   font-family: "PoppinsSemiBold";
   src: url("/fonts/PoppinsSemiBold.ttf");
+
+  font-family: "PoppinsLight";
+  src: url("/fonts/PoppinsLight.ttf");
 }
 
 body {
@@ -21,6 +24,37 @@ p {
   width: 100%;
   gap: 1rem;
   justify-content: space-between;
+}
+
+.bg-FEFEFA {
+  background-color: #fefefe;
+}
+
+.tHeadFont {
+  font-family: "PoppinsLight", sans-serif !important;
+  color: #505050;
+}
+
+.tableSName {
+  font-family: "PoppinsSemiBold", sans-serif !important;
+  color: #000000;
+  font-size: 24px;
+}
+
+.tableText {
+  font-family: "PoppinsRegular", sans-serif !important;
+  color: #000000;
+  font-size: 18px;
+}
+
+.tableCName {
+  font-family: "PoppinsRegular", sans-serif !important;
+  color: #0000009a;
+  font-size: 12px;
+}
+
+.detailsB {
+  color: #34846f;
 }
 
 /* Hide the sidebar on screens smaller than 768px */
@@ -39,5 +73,9 @@ p {
   }
   .smallNum {
     font-size: 22px !important;
+  }
+
+  .logoImg {
+    display: none !important;
   }
 }

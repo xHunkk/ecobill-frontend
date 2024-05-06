@@ -3,6 +3,7 @@ import Sidebar1 from "../../components/Sidebar";
 import Header from "../../components/Header";
 import StatisticsComponent from "../../components/StatisticsComponent";
 import "../../App.css";
+import ListInvoiceComponent from "../../components/ListInvoiceComponent";
 
 const DashboardPage = () => {
   return (
@@ -22,6 +23,7 @@ const DashboardPage = () => {
       >
         <Header />
         <StatisticsComponent />
+        <ListInvoiceComponent />
       </div>
     </div>
   );
