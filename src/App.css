@@ -9,7 +9,14 @@
 }
 
 body {
-  font-family: "PoppinsRegular", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.Stat {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 /* Hide the sidebar on screens smaller than 768px */
@@ -19,5 +26,8 @@ body {
   }
   .rightSide {
     padding: 1.25rem !important;
+  }
+  .Stat {
+    display: inline;
   }
 }

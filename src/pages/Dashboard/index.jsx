@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar1 from "../../components/Sidebar";
 import Header from "../../components/Header";
+import StatisticsComponent from "../../components/StatisticsComponent";
 import "../../App.css";
 
 const DashboardPage = () => {
@@ -20,6 +21,7 @@ const DashboardPage = () => {
         style={{ width: "100%", padding: "25px 70px" }}
       >
         <Header />
+        <StatisticsComponent />
       </div>
     </div>
   );
