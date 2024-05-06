@@ -57,12 +57,10 @@ p {
   color: #34846f;
 }
 
-.bigText {
-  font-family: "PoppinsSemiBold", sans-serif !important;
-}
-
-.smallNum {
-  font-family: "PoppinsSemiBold", sans-serif !important;
+.familyText {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
 }
 /* Hide the sidebar on screens smaller than 768px */
 @media (max-width: 768px) {
