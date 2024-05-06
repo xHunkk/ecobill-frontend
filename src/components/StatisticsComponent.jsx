@@ -27,9 +27,12 @@ const StatisticsComponent = () => {
       {statistics ? (
         <div style={styles.frame}>
           <p style={styles.text}>Total Spent This Month</p>
-          <h1 style={styles.bigText}>{statistics.thisMonthSpendings}</h1>
+          <p style={styles.bigText} className="bigText">
+            {statistics.thisMonthSpendings}
+          </p>
           <p style={styles.smallText}>
-            {statistics.monthlySpendingsDifference}% Compared to the last month
+            <span>{statistics.monthlySpendingsDifference}</span> Compared to the
+            last month
           </p>
         </div>
       ) : (
@@ -38,7 +41,9 @@ const StatisticsComponent = () => {
       {statistics ? (
         <div style={styles.frame}>
           <p style={styles.text}>Average Spent For Last 3 Months</p>
-          <h1 style={styles.bigText}>{statistics.averageSpent}</h1>
+          <p style={styles.bigText} className="bigText">
+            {statistics.averageSpent}
+          </p>
           <p style={styles.smallText}>Any text can be written here</p>
         </div>
       ) : (
@@ -48,7 +53,9 @@ const StatisticsComponent = () => {
         {statistics ? (
           <div style={styles.smallFrame}>
             <p style={styles.text}>Last Month Spendings</p>
-            <p style={styles.smallNum}>{statistics.lastMonthSpendings}</p>
+            <p style={styles.smallNum} className="smallNum">
+              {statistics.lastMonthSpendings}
+            </p>
 
             <p style={styles.smallText}>Any text can be written here</p>
           </div>
@@ -92,6 +99,10 @@ const styles = {
     padding: "24px",
     marginBottom: "1rem",
   },
+  p: {
+    margin: "0",
+    backgroundColor: "#FBFBFB",
+  },
   smallFrame: {
     width: "100%",
     display: "flex",
@@ -101,6 +112,7 @@ const styles = {
     backgroundColor: "#FBFBFB",
     borderRadius: "12px",
     padding: "1.5rem",
+    gap: "1rem",
   },
   text: {
     width: "100%",
@@ -115,7 +127,7 @@ const styles = {
   },
   smallText: {
     width: "100%",
-    fontSize: "20px",
+    fontSize: "18px",
     color: "rgba(19, 21, 21, 0.5)",
   },
   thirdFrame: {
@@ -132,7 +144,7 @@ const styles = {
     width: "100%",
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     gap: "8px",
   },

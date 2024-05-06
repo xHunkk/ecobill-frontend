@@ -12,6 +12,10 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
+p {
+  margin: 0 !important;
+}
+
 .Stat {
   display: flex;
   width: 100%;
@@ -29,5 +33,11 @@ body {
   }
   .Stat {
     display: inline;
+  }
+  .bigText {
+    font-size: 40px !important;
+  }
+  .smallNum {
+    font-size: 22px !important;
   }
 }

@@ -59,7 +59,7 @@ export default function Sidebar() {
 // Styles
 const styles = {
   sidebar: {
-    height: "100vh",
+    height: "100%",
     gap: "20px",
     padding: "10px",
     backgroundColor: "transparent",
