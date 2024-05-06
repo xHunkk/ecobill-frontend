@@ -31,7 +31,7 @@ const StatisticsComponent = () => {
             {statistics.thisMonthSpendings}
           </p>
           <p style={styles.smallText}>
-            <span>{statistics.monthlySpendingsDifference}</span> Compared to the
+            <span>{statistics.monthlySpendingsDifference}%</span> Compared to the
             last month
           </p>
         </div>
@@ -67,7 +67,7 @@ const StatisticsComponent = () => {
             <p style={styles.text}>Your Favorite Organization</p>
             <div style={styles.imgFrame}>
               <img
-                src={statistics.invoice.epr.logo}
+                // src={statistics.invoice.epr.logo}
                 alt="EPR Logo"
                 style={styles.image}
               />

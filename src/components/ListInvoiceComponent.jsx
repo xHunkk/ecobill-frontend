@@ -2,20 +2,30 @@ import React, { useEffect, useState } from "react";
 import { listInvoices } from "../services/InvoiceService";
 import { useNavigate } from "react-router-dom";
 
-const ListInvoiceComponent = () => {
+const ListInvoiceComponent = ({ invoices: propInvoices }) => {
   const [invoices, setInvoices] = useState([]);
+
+  console.log("listInvoice", propInvoices)
 
   const navigator = useNavigate();
 
   useEffect(() => {
-    listInvoices()
-      .then((response) => {
-        setInvoices(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    if (propInvoices && propInvoices.length > 0) {
+      setInvoices(propInvoices);
+    } else {
+      listInvoices()
+        .then((response) => {
+          setInvoices(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [propInvoices]);
+
+  useEffect(() => {
+    setInvoices(propInvoices);
+  }, [propInvoices]);
 
   function seeInvoiceDetails(qrCode) {
     navigator(`/invoice-details/${qrCode}`);
@@ -35,7 +45,7 @@ const ListInvoiceComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {invoices.map((invoice) => (
+          {invoices && invoices.map((invoice) => (
             <tr key={invoice.qrCode} className="border-t border-gray-300">
               <td className="px-4 py-2">
                 <div>
@@ -63,3 +73,4 @@ const ListInvoiceComponent = () => {
 };
 
 export default ListInvoiceComponent;
+
