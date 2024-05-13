@@ -4,16 +4,21 @@ import InvoiceComponent from "./components/InvoiceComponent";
 
 // Saad 3mk Codes
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/invoice-details" element={<InvoiceComponent />}></Route>
+          <Route path="/invoice-details/:qrCode" element={<InvoiceComponent />}></Route>
 
-          {/* saad 3mk Codes */}
           <Route path="/Dashboard" element={<Dashboard />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+
+
         </Routes>
       </BrowserRouter>
     </>

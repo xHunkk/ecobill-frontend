@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import stcImage from '../assets/STC_2-400x400.png'
+import { useLocation } from "react-router-dom";
+
 
 const InvoiceComponent = () => {
 
@@ -9,9 +11,18 @@ const InvoiceComponent = () => {
 
     const { qrCode } = useParams();
 
+    const location = useLocation()
+
+    const customerId = location.state && location.state.id;
+
+
     useEffect(() => {
-        const apiUrl = `http://localhost:8383/invoices/items?qr_code=${qrCode}`;
-        axios.get(apiUrl)
+        axios.get(`http://localhost:8383/invoices/items?id=${customerId}&qr_code=${qrCode}`,
+            {
+                headers: {
+                    'EcoBillKey': 'EcoBillValue'
+                }
+            })
             .then(response => {
                 setInvoiceItems(response.data);
             })

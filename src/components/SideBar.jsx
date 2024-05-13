@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import AnalyticsPopup from "./AnalyticsPopup";
 
-export default function Sidebar({ onApplyAnalytics }) {
+export default function Sidebar({ onApplyAnalytics, customerId }) {
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [analyticsData, setAnalyticsData] = useState(null);
 
@@ -52,7 +52,7 @@ export default function Sidebar({ onApplyAnalytics }) {
           },
         }}
       >
-        <AnalyticsPopup onApply={handleApplyAnalytics} />
+        <AnalyticsPopup onApply={handleApplyAnalytics} customerId={customerId} />
       </Modal>
     </div>
   );

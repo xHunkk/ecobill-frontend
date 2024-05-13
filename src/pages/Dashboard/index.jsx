@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import Sidebar1 from "../../components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import Header from "../../components/Header";
 import StatisticsComponent from "../../components/StatisticsComponent";
 import "../../App.css";
 import ListInvoiceComponent from "../../components/ListInvoiceComponent";
+import { useLocation } from "react-router-dom";
 
 const DashboardPage = () => {
   const [fetchedInvoices, setFetchedInvoices] = useState([]);
+  const location = useLocation()
+
+  const customerId = location.state && location.state.id;
 
   const handleApplyAnalytics = (data) => {
     setFetchedInvoices(data);
@@ -23,15 +27,15 @@ const DashboardPage = () => {
       }}
     >
       <div className="sidebar" style={{ padding: "10px" }}>
-        <Sidebar1 onApplyAnalytics={handleApplyAnalytics} />{" "}
+        <Sidebar onApplyAnalytics={handleApplyAnalytics} customerId={customerId} />{" "}
       </div>
       <div
         className="rightSide"
         style={{ width: "100%", padding: "25px 70px" }}
       >
         <Header />
-        <StatisticsComponent />
-        <ListInvoiceComponent invoices={fetchedInvoices} />
+        <StatisticsComponent customerId={customerId} />
+        <ListInvoiceComponent invoices={fetchedInvoices} customerId={customerId} />
       </div>
     </div>
   );

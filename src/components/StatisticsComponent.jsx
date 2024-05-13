@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const StatisticsComponent = () => {
+const StatisticsComponent = ({ customerId }) => {
   const [statistics, setStatistics] = useState([]);
-  const phoneNumber = "966553604747";
   const numberOfMonths = 3;
 
   useEffect(() => {
-    const apiUrl = `http://localhost:8383/invoices/statistics?phone_number=${phoneNumber}&months=${numberOfMonths}`;
-
     axios
-      .get(apiUrl)
+      .get(`http://localhost:8383/invoices/statistics?id=${customerId}&months=${numberOfMonths}`, {
+        headers: {
+          'EcoBillKey': 'EcoBillValue',
+        }
+      })
       .then((response) => {
         setStatistics(response.data);
       })
