@@ -31,6 +31,7 @@ const ListInvoiceComponent = ({ invoices: propInvoices, customerId }) => {
 
   function seeInvoiceDetails(qrCode) {
     navigator(`/invoice-details/${qrCode}`, { state: { id: customerId } });
+    navigator(`/invoice-details/${qrCode}`, { state: { id: customerId } });
   }
 
   return (

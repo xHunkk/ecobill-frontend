@@ -18,7 +18,6 @@ function App() {
             element={<InvoiceComponent />}
           ></Route>
 
-          {/* saad 3mk Codes */}
           <Route path="/Dashboard" element={<Dashboard />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
