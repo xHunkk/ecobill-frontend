@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
-function AnalyticsPopup({ onApply }) {
+function AnalyticsPopup({ onApply, customerId }) {
   const [organization, setOrganization] = useState("");
   const [afterDate, setAfterDate] = useState("");
   const [beforeDate, setBeforeDate] = useState("");
@@ -9,46 +9,56 @@ function AnalyticsPopup({ onApply }) {
   const [maxAmount, setMaxAmount] = useState("");
   const [fetchedInvoices, setFetchedInvoices] = useState([]);
 
+  console.log(customerId);
+
   const phoneNumber = 966553604747;
 
   const handleApply = () => {
-    const baseUrl = 'http://localhost:8383/invoices';
-    let endpoint = '';
+    const baseUrl = "http://localhost:8383/invoices/filters";
+    let endpoint = "";
 
     const params = {};
-    if (organization && !(phoneNumber && beforeDate && afterDate && minAmount && maxAmount)) {
-      endpoint = '/companies';
+    if (
+      organization &&
+      !(customerId && beforeDate && afterDate && minAmount && maxAmount)
+    ) {
+      endpoint = "/companies";
+      params.id = customerId;
       params.company = organization;
     } else if (minAmount && maxAmount) {
-      endpoint = '/price_range'
+      endpoint = "/price_range";
+      params.id = customerId;
       params.min = minAmount;
       params.max = maxAmount;
-    } else if (phoneNumber && beforeDate && afterDate) {
-      endpoint = '/date';
-      params.phone_number = phoneNumber;
+    } else if (customerId && beforeDate && afterDate) {
+      endpoint = "/date";
+      params.id = customerId;
       params.before_date = beforeDate + " 00:00:00.000 ";
       params.after_date = afterDate + " 00:00:00.000 ";
-    }
-    else {
-      endpoint = '/all_filters';
+    } else {
+      endpoint = "/all_filters";
       params.phone_number = phoneNumber;
       params.before_date = beforeDate + " 00:00:00.000 ";
       params.after_date = afterDate + " 00:00:00.000 ";
       params.min = minAmount;
       params.max = maxAmount;
       params.company = organization;
-
-
     }
-
-    axios.get(baseUrl + endpoint, { params })
-      .then(response => {
+    axios
+      .get(baseUrl + endpoint, {
+        params: params,
+        headers: {
+          EcoBillKey: "EcoBillValue",
+          // Add more headers as needed
+        },
+      })
+      .then((response) => {
         console.log(response.data);
         setFetchedInvoices(response.data);
         onApply(response.data);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   };
 
@@ -104,7 +114,9 @@ function AnalyticsPopup({ onApply }) {
             />
           </div>
         </div>
-        <button style={styles.button} onClick={handleApply}>Apply</button>
+        <button style={styles.button} onClick={handleApply}>
+          Apply
+        </button>
       </div>
     </div>
   );

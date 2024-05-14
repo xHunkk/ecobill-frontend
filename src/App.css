@@ -45,7 +45,7 @@ p {
 .tableText {
   font-family: "PoppinsRegular", sans-serif !important;
   color: #000000;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .tableCName {
@@ -63,6 +63,7 @@ p {
   font-weight: 600 !important;
   font-style: normal !important;
 }
+
 /* Hide the sidebar on screens smaller than 768px */
 @media (max-width: 768px) {
   .sidebar {
@@ -70,6 +71,7 @@ p {
   }
   .rightSide {
     padding: 1.25rem !important;
+    width: 100% !important;
   }
   .Stat {
     display: inline;
@@ -83,5 +85,22 @@ p {
 
   .logoImg {
     display: none !important;
+  }
+
+  .tablaCNames {
+    display: none !important;
+  }
+
+  .jcc {
+    justify-content: center !important;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
   }
 }

@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { listInvoices } from "../services/InvoiceService";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const ListInvoiceComponent = ({ invoices: propInvoices }) => {
+const ListInvoiceComponent = ({ invoices: propInvoices, customerId }) => {
   const [invoices, setInvoices] = useState([]);
-
-  console.log("listInvoice", propInvoices);
-
   const navigator = useNavigate();
 
   useEffect(() => {
     if (propInvoices && propInvoices.length > 0) {
       setInvoices(propInvoices);
     } else {
-      listInvoices()
+      axios
+        .get(
+          `http://localhost:8383/invoices/filters/price_range?id=${customerId}`,
+          {
+            headers: {
+              EcoBillKey: "EcoBillValue",
+            },
+          }
+        )
         .then((response) => {
           setInvoices(response.data);
         })
@@ -23,25 +29,21 @@ const ListInvoiceComponent = ({ invoices: propInvoices }) => {
     }
   }, [propInvoices]);
 
-  useEffect(() => {
-    setInvoices(propInvoices);
-  }, [propInvoices]);
-
   function seeInvoiceDetails(qrCode) {
-    navigator(`/invoice-details/${qrCode}`);
+    navigator(`/invoice-details/${qrCode}`, { state: { id: customerId } });
   }
 
   return (
     <div>
       <h2 className="text-xl mb-4">Transactions</h2>
-      <table className="table-auto w-full rounded-lg bg-FEFEFA">
+      <div className="table-container rounded-lg bg-FEFEFA">
         <div className="px-4 py-3">
           <div style={styles.searchIcon} className="flex">
             <img src="images/search.svg" alt="Search" />
             <input type="text" placeholder="Search" />
           </div>
         </div>
-        <div className="border-t border-gray-100">
+        <table className="table-auto w-full border-t border-gray-100">
           <thead>
             <tr>
               <th className="px-4 py-2 tHeadFont" style={{ width: "40%" }}>
@@ -64,7 +66,7 @@ const ListInvoiceComponent = ({ invoices: propInvoices }) => {
           <tbody>
             {invoices.map((invoice) => (
               <tr key={invoice.qrCode}>
-                <td className="px-4 py-2 flex items-center gap-3">
+                <td className="px-4 py-2 flex items-center gap-3 jcc">
                   <div>
                     <img
                       src={invoice.epr.logo}
@@ -72,7 +74,7 @@ const ListInvoiceComponent = ({ invoices: propInvoices }) => {
                       style={styles.tableLogoImg}
                     />
                   </div>
-                  <div>
+                  <div className="tablaCNames">
                     <p className="tableSName">{invoice.epr.name}</p>
                     <p className="tableCName">{invoice.epr.fullName}</p>
                   </div>
@@ -93,8 +95,8 @@ const ListInvoiceComponent = ({ invoices: propInvoices }) => {
               </tr>
             ))}
           </tbody>
-        </div>
-      </table>
+        </table>
+      </div>
     </div>
   );
 };
