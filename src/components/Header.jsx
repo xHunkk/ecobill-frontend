@@ -16,6 +16,12 @@ const Header = ({ customerId }) => {
     setIsOpen(false);
   };
 
+  const handleLogoutClick = () => {
+
+    localStorage.removeItem("token");
+    navigate("/login")
+  }
+
   return (
     <div style={styles.frame}>
       <div style={styles.header}>
@@ -37,7 +43,7 @@ const Header = ({ customerId }) => {
             src="images/profile.png"
             alt="Profile"
             style={styles.profileIcon}
-            onClick={() => setIsOpen(!isOpen)} // on Click handler
+            onClick={() => setIsOpen(!isOpen)}
           />
           {isOpen && (
             <div style={styles.dropdown}>
@@ -58,7 +64,7 @@ const Header = ({ customerId }) => {
                 }
                 onMouseEnter={() => setIsHoveredLogout(true)}
                 onMouseLeave={() => setIsHoveredLogout(false)}
-                onClick={() => navigate("/login")}
+                onClick={handleLogoutClick}
               >
                 Logout
               </button>
