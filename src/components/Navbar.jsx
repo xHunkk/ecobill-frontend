@@ -6,9 +6,9 @@ const Navbar = () => {
       <h1 className="w-[300px] text-3xl font-bold text-black z-0">EcoBill</h1>
       <div className="flex-grow">
         <ul className="flex justify-center z-10">
-          <li className="p-4">Something</li>
-          <li className="p-4">Support</li>
           <li className="p-4">Download</li>
+          <li className="p-4">Support</li>
+          <li className="p-4">About Us</li>
         </ul>
       </div>
       <div className="w-[300px] flex">

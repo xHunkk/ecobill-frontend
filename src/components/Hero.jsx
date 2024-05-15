@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { ReactTyped } from "react-typed";
 import Frame90 from '../assets/Frame 90.png'
 
 const Hero = () => {
+
+  const navigate = useNavigate()
 
   return (
     <div className='max-w-[1240px] mx-auto grid grid-cols-2 mt-7'>
@@ -37,8 +40,10 @@ const Hero = () => {
             Imagine a place where every receipt, every bill, and every purchase coexists in perfect harmony.
           </p>
           <div className="flex">
-            <button className='bg-[#33836f] w-[170px] h-[40px] rounded-md my-6 py-3 text-white mr-4 text-xl flex items-center justify-center'>Try It Out</button>
-            <button className='w-[170px] h-[40px] rounded-md my-6 py-3 text-black border text-center border-black text-xl flex items-center justify-center'>Dashboard</button>
+            <button className='bg-[#33836f] w-[170px] h-[40px] rounded-md my-6 py-3 text-white mr-4 text-xl flex items-center justify-center' onClick={() => { navigate('/register') }}>Try It Out</button>
+            <button className='w-[170px] h-[40px] rounded-md my-6 py-3 text-black border text-center border-black text-xl flex items-center justify-center' onClick={() => {
+              localStorage.getItem('token') !== null ? navigate('/dashboard') : navigate('/login');
+            }}>Dashboard</button>
           </div>
         </div>
       </div>
