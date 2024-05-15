@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function AnalyticsPopup({ onApply, customerId }) {
-function AnalyticsPopup({ onApply, customerId }) {
   const [organization, setOrganization] = useState("");
   const [afterDate, setAfterDate] = useState("");
   const [beforeDate, setBeforeDate] = useState("");
@@ -61,7 +60,6 @@ function AnalyticsPopup({ onApply, customerId }) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
   };
 
   return (

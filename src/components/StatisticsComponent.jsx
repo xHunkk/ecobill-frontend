@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const StatisticsComponent = ({ customerId }) => {
-const StatisticsComponent = ({ customerId }) => {
   const [statistics, setStatistics] = useState([]);
   const numberOfMonths = 3;
 
