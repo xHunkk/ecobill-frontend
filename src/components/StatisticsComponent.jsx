@@ -74,6 +74,7 @@ const StatisticsComponent = () => {
             <p style={styles.text}>Your Favorite Organization</p>
             <div style={styles.imgFrame}>
               <img
+                src={statistics.mostVisitedCompanyLogo}
                 alt="EPR Logo"
                 style={styles.image}
               />
@@ -154,8 +155,8 @@ const styles = {
     gap: "8px",
   },
   image: {
-    width: "36px",
-    height: "36px",
+    width: "54px",
+    height: "54px",
     borderRadius: "6px",
   },
   smallNum: {

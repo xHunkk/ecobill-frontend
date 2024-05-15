@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const PhoneLogin = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("966");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [id, setId] = useState(null);
@@ -68,7 +68,6 @@ const PhoneLogin = () => {
       >
         Login
       </button>
-      {id && <div>Logged in user ID: {id}</div>}
     </div>
   );
 };

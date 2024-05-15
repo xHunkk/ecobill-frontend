@@ -48,7 +48,7 @@ const EmailLogin = () => {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your username"
+          placeholder="Enter your Email"
           className="w-full px-3 py-3 rounded-lg input-field"
         />
       </div>
@@ -68,8 +68,6 @@ const EmailLogin = () => {
       >
         Login
       </button>
-
-      {id && <div className="mt-4">Logged in user ID: {id}</div>}
     </div>
   );
 };

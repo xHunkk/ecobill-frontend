@@ -82,24 +82,33 @@ const InvoiceComponent = () => {
           ))}
         </tbody>
       </table>
-      <div className="border-t border-gray-200 pt-4">
-        <div className="flex justify-between py-2">
-          <span className="text-gray-700">Total Price</span>
-          <span className="text-gray-700">75 SAR</span>
-        </div>
-        <div className="flex justify-between py-2">
-          <span className="text-gray-700">VAT (15%)</span>
-          <span className="text-gray-700">11.25 SAR</span>
-        </div>
-        <div className="flex justify-between py-2 font-bold">
-          <span className="text-gray-900">Total with VAT</span>
-          <span className="text-gray-900">86.25 SAR</span>
-        </div>
-        <div className="flex justify-between py-2">
-          <span className="text-gray-700">Payment Method</span>
-          <span className="text-gray-700">Apple Pay</span>
-        </div>
+
+      <div>
+        {invoiceItemsList.length > 0 && (
+          <div
+            key={invoiceItemsList[0].invoice.id}
+            className="border-t border-gray-200 pt-4"
+          >
+            <div className="flex justify-between py-2">
+              <span className="text-gray-700">Total Price</span>
+              <span className="text-gray-700">{invoiceItemsList[0].invoice.totalAmount}</span>
+            </div>
+            <div className="flex justify-between py-2">
+              <span className="text-gray-700">VAT (15%)</span>
+              <span className="text-gray-700">{invoiceItemsList[0].invoice.vatAmount}</span>
+            </div>
+            <div className="flex justify-between py-2 font-bold">
+              <span className="text-gray-900">Total with VAT</span>
+              <span className="text-gray-900">{invoiceItemsList[0].invoice.totalAmountWithVat}</span>
+            </div>
+            <div className="flex justify-between py-2">
+              <span className="text-gray-700">Payment Method</span>
+              <span className="text-gray-700">{invoiceItemsList[0].invoice.paymentMethod}</span>
+            </div>
+          </div>
+        )}
       </div>
+
       <div className="text-center mt-8">
         <img
           src="../images/barcode.png"
