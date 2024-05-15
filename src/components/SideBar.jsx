@@ -8,7 +8,6 @@ export default function Sidebar({ onApplyAnalytics }) {
   const [analyticsData, setAnalyticsData] = useState(null);
   const navigate = useNavigate();
 
-
   const handleApplyAnalytics = (data) => {
     setAnalyticsData(data);
     onApplyAnalytics(data);
@@ -22,7 +21,12 @@ export default function Sidebar({ onApplyAnalytics }) {
       </div>
       <div style={styles.separator} />
       <div style={styles.links}>
-        <img src="images/home.svg" alt="Home" style={styles.icon} onClick={() => navigate("/")} />
+        <img
+          src="images/home.svg"
+          alt="Home"
+          style={styles.icon}
+          onClick={() => navigate("/")}
+        />
         <img
           src="images/analytics.svg"
           alt="Analytics"
@@ -30,7 +34,7 @@ export default function Sidebar({ onApplyAnalytics }) {
           onClick={() => setShowAnalytics(true)}
         />
       </div>
-      <div style={styles.supportIcon}>
+      <div style={styles.supportIconContainer}>
         <img src="images/support.svg" alt="Support" style={styles.icon} />
       </div>
 
@@ -55,9 +59,7 @@ export default function Sidebar({ onApplyAnalytics }) {
           },
         }}
       >
-        <AnalyticsPopup
-          onApply={handleApplyAnalytics}
-        />
+        <AnalyticsPopup onApply={handleApplyAnalytics} />
       </Modal>
     </div>
   );
@@ -65,8 +67,11 @@ export default function Sidebar({ onApplyAnalytics }) {
 
 const styles = {
   sidebar: {
-    height: "100%",
-    gap: "20px",
+    position: "sticky",
+    top: "10%",
+    left: 0,
+    height: "80vh",
+    width: "100px",
     padding: "10px",
     backgroundColor: "transparent",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
@@ -74,6 +79,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "12px",
+    zIndex: 1000,
   },
   logoFrame: {
     width: "75px",
@@ -92,10 +98,10 @@ const styles = {
     height: "5px",
     borderRadius: "17px",
     backgroundColor: "grey",
+    margin: "20px 0",
   },
   links: {
-    height: "820px",
-    width: "100%",
+    flex: 1,
     gap: "40px",
     paddingTop: "30px",
     display: "flex",
@@ -105,11 +111,12 @@ const styles = {
   icon: {
     height: "35px",
     width: "35px",
+    cursor: "pointer",
   },
-  supportIcon: {
-    height: "35px",
-    width: "35px",
-    position: "absolute",
-    bottom: "0",
+  supportIconContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    paddingBottom: "20px",
   },
 };

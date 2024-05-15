@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../../components/SideBar";
+import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import StatisticsComponent from "../../components/StatisticsComponent";
 import "../../App.css";
@@ -38,9 +38,7 @@ const DashboardPage = () => {
       >
         <Header customerId={customerId} />
         <StatisticsComponent />
-        <ListInvoiceComponent
-          invoices={fetchedInvoices}
-        />
+        <ListInvoiceComponent invoices={fetchedInvoices} />
       </div>
     </div>
   );

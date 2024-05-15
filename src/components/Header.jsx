@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import AccountEdit from "./AccountEdit";
 import { useNavigate } from "react-router";
+import Modal from "react-modal";
 
-//states
 const Header = ({ customerId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHoveredManage, setIsHoveredManage] = useState(false); // for Manage button
+  const [isHoveredManage, setIsHoveredManage] = useState(false);
   const [isHoveredLogout, setIsHoveredLogout] = useState(false);
   const [showAccountEdit, setShowAccountEdit] = useState(false);
   const navigate = useNavigate();
-
 
   const handleManageClick = () => {
     setShowAccountEdit(true);
@@ -17,10 +16,9 @@ const Header = ({ customerId }) => {
   };
 
   const handleLogoutClick = () => {
-
     localStorage.removeItem("token");
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   return (
     <div style={styles.frame}>
@@ -52,7 +50,6 @@ const Header = ({ customerId }) => {
                 onMouseEnter={() => setIsHoveredManage(true)}
                 onMouseLeave={() => setIsHoveredManage(false)}
                 onClick={handleManageClick}
-
               >
                 Manage
               </button>
@@ -72,8 +69,29 @@ const Header = ({ customerId }) => {
           )}
         </div>
       </div>
-      {showAccountEdit && <AccountEdit customerId={customerId} />}
-
+      <Modal
+        isOpen={showAccountEdit}
+        onRequestClose={() => setShowAccountEdit(false)}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "#F4F4F4",
+            borderRadius: "11px",
+            width: "475px",
+            padding: "32px",
+          },
+        }}
+      >
+        <AccountEdit customerId={customerId} />
+      </Modal>
     </div>
   );
 };
