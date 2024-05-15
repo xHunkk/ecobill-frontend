@@ -54,7 +54,6 @@ function AnalyticsPopup({ onApply }) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
   };
 
   return (
