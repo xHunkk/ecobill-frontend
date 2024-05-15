@@ -1,10 +1,20 @@
 import React, { useState } from "react";
+import AccountEdit from "./AccountEdit";
+import { useNavigate } from "react-router";
 
 //states
-const Header = () => {
+const Header = ({ customerId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHoveredManage, setIsHoveredManage] = useState(false); // for Manage button
-  const [isHoveredLogout, setIsHoveredLogout] = useState(false); // for Logout button
+  const [isHoveredLogout, setIsHoveredLogout] = useState(false);
+  const [showAccountEdit, setShowAccountEdit] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handleManageClick = () => {
+    setShowAccountEdit(true);
+    setIsOpen(false);
+  };
 
   return (
     <div style={styles.frame}>
@@ -29,12 +39,14 @@ const Header = () => {
             style={styles.profileIcon}
             onClick={() => setIsOpen(!isOpen)} // on Click handler
           />
-          {isOpen && ( // dropdown menu
+          {isOpen && (
             <div style={styles.dropdown}>
               <button
                 style={isHoveredManage ? styles.menuItemHover : styles.menuItem}
                 onMouseEnter={() => setIsHoveredManage(true)}
                 onMouseLeave={() => setIsHoveredManage(false)}
+                onClick={handleManageClick}
+
               >
                 Manage
               </button>
@@ -46,6 +58,7 @@ const Header = () => {
                 }
                 onMouseEnter={() => setIsHoveredLogout(true)}
                 onMouseLeave={() => setIsHoveredLogout(false)}
+                onClick={() => navigate("/login")}
               >
                 Logout
               </button>
@@ -53,6 +66,8 @@ const Header = () => {
           )}
         </div>
       </div>
+      {showAccountEdit && <AccountEdit customerId={customerId} />}
+
     </div>
   );
 };

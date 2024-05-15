@@ -25,7 +25,10 @@
     "react-icons": "^5.2.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.0",
-    "react-typed": "^2.0.12"
+    "react-typed": "^2.0.12",
+    "sockjs-client": "^1.6.1",
+    "sockjs-client-node": "^1.0.0",
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

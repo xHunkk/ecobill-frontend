@@ -3,7 +3,7 @@ import { listInvoices } from "../services/InvoiceService";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const ListInvoiceComponent = ({ invoices: propInvoices, customerId }) => {
+const ListInvoiceComponent = ({ invoices: propInvoices }) => {
   const [invoices, setInvoices] = useState([]);
   const navigator = useNavigate();
 
@@ -13,10 +13,12 @@ const ListInvoiceComponent = ({ invoices: propInvoices, customerId }) => {
     } else {
       axios
         .get(
-          `http://localhost:8383/invoices/filters/price_range?id=${customerId}`,
+          "http://localhost:8383/invoices/filters/price_range",
           {
             headers: {
-              EcoBillKey: "EcoBillValue",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              EcoBillKey: "EcoBillValue"
+
             },
           }
         )
@@ -28,6 +30,7 @@ const ListInvoiceComponent = ({ invoices: propInvoices, customerId }) => {
         });
     }
   }, [propInvoices]);
+
 
   function seeInvoiceDetails(qrCode) {
     navigator(`/invoice-details/${qrCode}`, { state: { id: customerId } });

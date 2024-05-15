@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function AnalyticsPopup({ onApply, customerId }) {
-function AnalyticsPopup({ onApply, customerId }) {
+function AnalyticsPopup({ onApply }) {
   const [organization, setOrganization] = useState("");
   const [afterDate, setAfterDate] = useState("");
   const [beforeDate, setBeforeDate] = useState("");
@@ -10,9 +9,6 @@ function AnalyticsPopup({ onApply, customerId }) {
   const [maxAmount, setMaxAmount] = useState("");
   const [fetchedInvoices, setFetchedInvoices] = useState([]);
 
-  console.log(customerId);
-
-  const phoneNumber = 966553604747;
 
   const handleApply = () => {
     const baseUrl = "http://localhost:8383/invoices/filters";
@@ -21,36 +17,33 @@ function AnalyticsPopup({ onApply, customerId }) {
     const params = {};
     if (
       organization &&
-      !(customerId && beforeDate && afterDate && minAmount && maxAmount)
+      !(beforeDate && afterDate && minAmount && maxAmount)
     ) {
       endpoint = "/companies";
-      params.id = customerId;
       params.company = organization;
     } else if (minAmount && maxAmount) {
       endpoint = "/price_range";
-      params.id = customerId;
       params.min = minAmount;
       params.max = maxAmount;
-    } else if (customerId && beforeDate && afterDate) {
+    } else if (beforeDate && afterDate) {
       endpoint = "/date";
-      params.id = customerId;
       params.before_date = beforeDate + " 00:00:00.000 ";
       params.after_date = afterDate + " 00:00:00.000 ";
     } else {
-      endpoint = "/all_filters";
-      params.phone_number = phoneNumber;
+      endpoint = "/all";
       params.before_date = beforeDate + " 00:00:00.000 ";
       params.after_date = afterDate + " 00:00:00.000 ";
       params.min = minAmount;
       params.max = maxAmount;
       params.company = organization;
     }
+
     axios
       .get(baseUrl + endpoint, {
         params: params,
         headers: {
-          EcoBillKey: "EcoBillValue",
-          // Add more headers as needed
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          EcoBillKey: "EcoBillValue"
         },
       })
       .then((response) => {
@@ -87,15 +80,15 @@ function AnalyticsPopup({ onApply, customerId }) {
           <div style={styles.dateInputs}>
             <input
               style={styles.input}
-              value={afterDate}
-              onChange={(e) => setAfterDate(e.target.value)}
-              placeholder="After"
-            />
-            <input
-              style={styles.input}
               value={beforeDate}
               onChange={(e) => setBeforeDate(e.target.value)}
               placeholder="Before"
+            />
+            <input
+              style={styles.input}
+              value={afterDate}
+              onChange={(e) => setAfterDate(e.target.value)}
+              placeholder="After"
             />
           </div>
         </div>

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import AnalyticsPopup from "./AnalyticsPopup";
+import { useNavigate } from "react-router";
 
-export default function Sidebar({ onApplyAnalytics, customerId }) {
+export default function Sidebar({ onApplyAnalytics }) {
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [analyticsData, setAnalyticsData] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleApplyAnalytics = (data) => {
     setAnalyticsData(data);
@@ -19,7 +22,7 @@ export default function Sidebar({ onApplyAnalytics, customerId }) {
       </div>
       <div style={styles.separator} />
       <div style={styles.links}>
-        <img src="images/home.svg" alt="Home" style={styles.icon} />
+        <img src="images/home.svg" alt="Home" style={styles.icon} onClick={() => navigate("/")} />
         <img
           src="images/analytics.svg"
           alt="Analytics"
@@ -54,7 +57,6 @@ export default function Sidebar({ onApplyAnalytics, customerId }) {
       >
         <AnalyticsPopup
           onApply={handleApplyAnalytics}
-          customerId={customerId}
         />
       </Modal>
     </div>

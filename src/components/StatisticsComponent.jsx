@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const StatisticsComponent = ({ customerId }) => {
-const StatisticsComponent = ({ customerId }) => {
+
+const StatisticsComponent = () => {
   const [statistics, setStatistics] = useState([]);
   const numberOfMonths = 3;
 
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8383/invoices/statistics?id=${customerId}&months=${numberOfMonths}`,
+        `http://localhost:8383/invoices/statistics?months=${numberOfMonths}`,
         {
           headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             EcoBillKey: "EcoBillValue",
           },
         }
@@ -73,7 +74,6 @@ const StatisticsComponent = ({ customerId }) => {
             <p style={styles.text}>Your Favorite Organization</p>
             <div style={styles.imgFrame}>
               <img
-                // src={statistics.invoice.epr.logo}
                 alt="EPR Logo"
                 style={styles.image}
               />
