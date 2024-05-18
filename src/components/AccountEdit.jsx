@@ -25,6 +25,7 @@ const AccountEdit = ({ customerId }) => {
           },
         }
       );
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.error("Error occurred during API call:", error);
