@@ -37,8 +37,8 @@ const StatisticsComponent = () => {
             {statistics.thisMonthSpendings} <span style={styles.SAR}>SAR</span>
           </p>
           <p style={styles.smallText}>
-            <span>{statistics.monthlySpendingsDifference}%</span> Compared to
-            the last month
+            <span><i style={styles.red}>▲{statistics.monthlySpendingsDifference}%</i></span> Compared to what you have spent last month.
+
           </p>
         </div>
       ) : (
@@ -50,7 +50,7 @@ const StatisticsComponent = () => {
           <p style={styles.bigText} className="bigText familyText">
             {statistics.averageSpent} <span style={styles.SAR}>SAR</span>
           </p>
-          <p style={styles.smallText}>Any text can be written here</p>
+          <p style={styles.smallText}>Use this information to understand your spending patterns and plan your finances better.</p>
         </div>
       ) : (
         <p>Loading statistics...</p>
@@ -64,7 +64,7 @@ const StatisticsComponent = () => {
               <span style={styles.SARsmall}>SAR</span>
             </p>
 
-            <p style={styles.smallText}>Any text can be written here</p>
+            <p style={styles.smallText}>Analyze this data to gain insights into your spending patterns and make informed financial decisions.</p>
           </div>
         ) : (
           <p>Loading statistics...</p>
@@ -80,7 +80,7 @@ const StatisticsComponent = () => {
               />
               <p style={styles.text}>{statistics.mostVisitedCompany}</p>
             </div>
-            <p style={styles.smallText}>Any text can be written here</p>
+            <p style={styles.smallText}>Did you know that you're spending the most on a {statistics.mostVisitedCompanyCategory} ?</p>
           </div>
         ) : (
           <p>Loading statistics...</p>
@@ -92,7 +92,6 @@ const StatisticsComponent = () => {
 
 export default StatisticsComponent;
 
-// Styles
 const styles = {
   frame: {
     width: "100%",
@@ -170,5 +169,8 @@ const styles = {
   },
   SARsmall: {
     fontSize: "20px",
+  }, red: {
+    color: "red",
   },
+
 };
