@@ -32,13 +32,19 @@ const InvoiceComponent = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg">
-      <div className="flex justify-between items-center mb-4">
-        <img
-          src={stcImage}
-          alt="Circular"
-          className="w-24 h-24 mx-auto rounded-full"
-        />
-      </div>
+      {invoiceItemsList.length > 0 && (
+        <div
+          key={invoiceItemsList[0].invoice.id}
+        >
+          <div className="flex justify-between items-center mb-4">
+            <img
+              src={invoiceItemsList[0].invoice.epr.logo}
+              alt="Circular"
+              className="w-25 h-25 mx-auto rounded-full"
+            />
+          </div>
+        </div>)}
+
 
       <div>
         {invoiceItemsList.length > 0 && (
@@ -50,7 +56,7 @@ const InvoiceComponent = () => {
               {invoiceItemsList[0].invoice.epr.name}
             </h2>
             <p className="text-gray-600">
-              {invoiceItemsList[0].invoice.creationDate}
+              {/* {invoiceItemsList[0].invoice.creationDate} */}
             </p>
             <p className="text-gray-600">
               Tax Number: {invoiceItemsList[0].invoice.epr.taxNumber}
@@ -73,10 +79,10 @@ const InvoiceComponent = () => {
         <tbody>
           {invoiceItemsList.map((invoiceItems) => (
             <tr key={invoiceItems.invoice.qrCode}>
-              <td className="border-t px-4 py-2">{invoiceItems.quantity}</td>
+              <td className="border-t px-4 py-2">{invoiceItems.quantity}x</td>
               <td className="border-t px-4 py-2">{invoiceItems.name}</td>
               <td className="border-t px-4 py-2 text-right">
-                {invoiceItems.price}
+                {invoiceItems.price} SAR
               </td>
             </tr>
           ))}
@@ -91,15 +97,15 @@ const InvoiceComponent = () => {
           >
             <div className="flex justify-between py-2">
               <span className="text-gray-700">Total Price</span>
-              <span className="text-gray-700">{invoiceItemsList[0].invoice.totalAmount}</span>
+              <span className="text-gray-700">{invoiceItemsList[0].invoice.totalAmount} SAR</span>
             </div>
             <div className="flex justify-between py-2">
               <span className="text-gray-700">VAT (15%)</span>
-              <span className="text-gray-700">{invoiceItemsList[0].invoice.vatAmount}</span>
+              <span className="text-gray-700">{invoiceItemsList[0].invoice.vatAmount} SAR</span>
             </div>
             <div className="flex justify-between py-2 font-bold">
               <span className="text-gray-900">Total with VAT</span>
-              <span className="text-gray-900">{invoiceItemsList[0].invoice.totalAmountWithVat}</span>
+              <span className="text-gray-900">{invoiceItemsList[0].invoice.totalAmountWithVat} SAR</span>
             </div>
             <div className="flex justify-between py-2">
               <span className="text-gray-700">Payment Method</span>

@@ -37,7 +37,7 @@ const StatisticsComponent = () => {
             {statistics.thisMonthSpendings} <span style={styles.SAR}>SAR</span>
           </p>
           <p style={styles.smallText}>
-            <span><i style={styles.red}>▲{statistics.monthlySpendingsDifference}%</i></span> Compared to what you have spent last month.
+            <span><b style={styles.red}>▲{statistics.monthlySpendingsDifference}%</b></span> Compared to what you have spent last month.
 
           </p>
         </div>
@@ -64,7 +64,7 @@ const StatisticsComponent = () => {
               <span style={styles.SARsmall}>SAR</span>
             </p>
 
-            <p style={styles.smallText}>Analyze this data to gain insights into your spending patterns and make informed financial decisions.</p>
+            <p style={styles.smallText}>Analyze this data to make informed financial decisions.</p>
           </div>
         ) : (
           <p>Loading statistics...</p>
@@ -80,7 +80,7 @@ const StatisticsComponent = () => {
               />
               <p style={styles.text}>{statistics.mostVisitedCompany}</p>
             </div>
-            <p style={styles.smallText}>Did you know that you're spending the most on a {statistics.mostVisitedCompanyCategory} ?</p>
+            <p style={styles.smallText}>Did you know that you're spending the most on a <b>{statistics.mostVisitedCompanyCategory}</b> ?</p>
           </div>
         ) : (
           <p>Loading statistics...</p>

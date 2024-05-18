@@ -83,7 +83,7 @@ const ListInvoiceComponent = ({ invoices: propInvoices }) => {
                   </div>
                 </td>
                 <td className="px-4 py-2 tableText">
-                  {invoice.totalAmount} SAR
+                  {invoice.totalAmountWithVat} SAR
                 </td>
                 <td className="px-4 py-2 tableText">{invoice.creationDate}</td>
                 <td className="px-4 py-2 tableText">{invoice.epr.category}</td>
